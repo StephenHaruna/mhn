@@ -14,7 +14,7 @@ apt-get -y install oracle-java8-installer
 
 # Install ES
 wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch |  apt-key add -
-echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' |  tee /etc/apt/sources.list.d/elasticsearch.list
+echo 'deb http://packages.elasticsearch.org/elasticsearch/2.x/debian stable main' |  tee /etc/apt/sources.list.d/elasticsearch.list
 apt-get update
 apt-get -y install elasticsearch=1.4.4
 sed -i '/network.host/c\network.host\:\ localhost' /etc/elasticsearch/elasticsearch.yml
@@ -24,8 +24,8 @@ update-rc.d elasticsearch defaults 95 10
 # Install Kibana
 mkdir /tmp/kibana
 cd /tmp/kibana ;
-wget https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz
-tar xvf kibana-4.0.1-linux-x64.tar.gz
+wget https://download.elastic.co/kibana/kibana/kibana-4.5.4-linux-x64.tar.gz
+tar xvf kibana-4.5.4-linux-x64.tar.gz
 sed -i '/0.0.0.0/c\host\:\ localhost' /etc/elasticsearch/elasticsearch.yml
 mkdir -p /opt/kibana
 cp -R /tmp/kibana/kibana-4*/* /opt/kibana/
@@ -44,7 +44,7 @@ EOF
 
 # Install Logstash
 
-echo 'deb http://packages.elasticsearch.org/logstash/1.5/debian stable main' |  tee /etc/apt/sources.list.d/logstash.list
+echo 'deb http://packages.elasticsearch.org/logstash/2.3/debian stable main' |  tee /etc/apt/sources.list.d/logstash.list
 apt-get update
 apt-get install logstash
 cd /opt/logstash
